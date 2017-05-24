@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>加载更多</title>
+  <style type="text/css">
+
+    ul,li {
+      list-style: none;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    li {
+     display: block;
+     margin: 10px auto;
+     border: 1px solid #ccc;
+     padding: 5px;
+     text-align: center;
+     /*
+     width: 600px;
+     height: 30px;
+     box-sizing: border-box;
+     */
+    }
+    .ct li:hover {
+      background-color: green;
+      cursor: pointer;
+    }
+    .btn {
+      visibility: hidden;
+    }
+/*    .btn {
+      cursor: pointer;
+      width: 100px;
+      height: 40px;
+      border-radius: 3px;
+      font-size: 16px;
+      margin: 20px auto;
+      display: block;
+      outline: none;
+    }
+    .btn:hover {
+      background-color: pink;
+      color: green;
+    }*/
+  </style>
+</head>
+<body>
+  <ul class="ct"></ul>
+  <button class="btn">加载更多</button>
+  <script src='jquery/jquery-3.2.1.min.js'></script>
+  <script type="text/javascript">
+    var $ct = $('.ct')
+    var isOver = false
+    var lock = true
+    var index = 0
+    getNews()
+    
+    $(window).on('scroll',check)
+
+      // check()
+      // if (!lock) {
+      //   return
+      // }      
+      // if (isVisible($('.btn'))&&!isOver&&lock) {
+      //   getNews()
+      //   console.log('a')
+      // }
+      // lock = false
+    // })
+      
+    function getNews(){
+      lock = false
+      $.ajax({
+      url:'/loadMore',
+      type:'get',
+      dataType:'json',
+      data:{
+        index:index,
+        length:3
+      },
+      success:function(ret){
+        lock = true
+        if (ret.status == '0') {
+          // index++
+          appendHtml(ret.data)
+          console.log('1') 
+          check()
+          
+          // if (isVisible($('.btn'))&&!isOver&&lock) {
+          //   getNews()
+          //   console.log('a')
+          // }
+          
+        } else {
+          console.log('2')
+        }
+        // lock = true
+        },
+        error:function(){
+          console.log('出错了')
+        }, 
+      })
+    }
+    function check(){
+      if (isVisible($('.btn'))&&!isOver&&lock) {
+        getNews()
+        console.log('a')
+      }
+    }
+    function appendHtml(news){
+      if (news.length === 0) {
+        $ct.append('<p>没有更多数据了</p>')
+        isOver = true
+        console.log('b')
+      } 
+      var htmls = ''
+      $.each(news,function(idx,prod){
+        htmls ='<li><a href="#">'+prod+'</a></li>'
+        $ct.append(htmls)
+        index++
+      })
+      // $ct.append(htmls)
+    }
+    function isVisible($node){
+      var windowHeight = $(window).height()
+      var offsetTop = $node.offset().top
+      var scrollTop = $(window).scrollTop()
+      var nodeHeight = $node.outerHeight(true)
+      if (scrollTop<offsetTop+nodeHeight&&scrollTop>offsetTop-windowHeight) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+  </script>
+</body>
+</html>

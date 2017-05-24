@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>图片懒加载</title>
+  <style type="text/css">
+    ul,li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+    .pic-load {
+      width: 700px;
+      margin: 10px auto;
+    }
+
+    .pic-ct:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .pic-ct {
+      margin-left: -20px;
+      margin-top: -20px;
+    }
+    li img {
+      width: 220px;
+      height: 220px;
+      margin-left: 20px;
+      margin-top: 20px;
+      box-sizing: border-box;
+      float: left;
+/*      border: 1px solid #ccc;*/
+    }
+
+  </style>
+</head>
+<body>
+  <div class="pic-load">
+    <ul class="pic-ct">
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t011a1fe6cca099629e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p3.so.qhimgs1.com/bdr/_240_/t01db796cba9f228453.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p1.so.qhimgs1.com/bdr/_240_/t01f041a0726824f06d.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p0.so.qhimgs1.com/bdr/_240_/t015a4076bb726929dc.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p0.so.qhmsg.com/bdr/_240_/t01398b9cc36ef09695.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p0.so.qhmsg.com/bdr/_240_/t01c4c6ef1aff80dab5.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t013755fd2ef507d1ce.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p3.so.qhmsg.com/bdr/_240_/t015472256ef3e9b948.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhmsg.com/bdr/_240_/t012f78f0074befc587.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhmsg.com/bdr/_240_/t012f78f0074befc587.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p4.so.qhmsg.com/bdr/_240_/t01f432dafebf2af1b9.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p5.so.qhimgs1.com/bdr/_240_/t0107399d62df38fbab.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p2.so.qhimgs1.com/bdr/_240_/t0127998eb984c68b1e.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p0.so.qhmsg.com/bdr/_240_/t018cf39f11815da0a5.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p0.so.qhimgs1.com/bdr/_240_/t01087bc0d32b00ec1c.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p1.so.qhmsg.com/bdr/_240_/t01ab1c0a7d6bc2d716.jpg"></a></li>
+      <li><a href="#"><img src='http://p4.so.qhimgs1.com/bdr/_240_/t01875399f7ca17fe54.jpg' data-src="http://p4.so.qhimgs1.com/bdr/_240_/t01882cd10fc11c026a.jpg"></a></li>
+
+    </ul>
+  </div>
+
+  <script src='C:\Users\Administrator\Desktop\JS\jquery-3.2.1.min.js'></script>
+  <script type="text/javascript">
+    var $picCt = $('.pic-ct')
+    var a = 0
+    $('.pic-ct img').each(function(){
+      if (isVisible($(this))) {
+        showImg($(this))
+      }
+    })
+
+    $(window).on('scroll',function(){
+      $('.pic-ct img').not('.load').each(function(){
+        if (isVisible($(this))) {
+          showImg($(this))
+          a++
+          console.log(a)
+        }
+      })
+
+    })
+    function showImg ($img){
+      var $imgUrl = $img.attr('data-src')
+      $img.attr('src',$imgUrl)
+      $img.addClass('load')
+    }
+
+    function isVisible($node){
+      var windowHeight = $(window).height()
+      var offsetTop = $node.offset().top
+      var scrollTop = $(window).scrollTop()
+      var nodeHeight = $node.outerHeight(true)
+      if (scrollTop<offsetTop+nodeHeight&&scrollTop>offsetTop-windowHeight) {
+        return true
+      } else {
+        return false
+      }
+    }
+  </script>
+</body>
+</html>
